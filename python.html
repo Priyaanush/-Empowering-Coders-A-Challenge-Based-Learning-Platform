@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("static/new2.jpg");
+            text-align: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #fffcfc;
+            font-size: 60px;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: bolder;
+        }
+
+        .form-container {
+            background-color: #c9c0c0ef;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 70%;
+            margin: 20px auto;
+            border-radius: 20px 100px ;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav i {
+            margin-right: 0px;
+        }
+		#answerInput {
+			  width: 100%;
+			  height: 200px;
+			}
+                #answerDisplay {
+                    margin-top: 20px;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    background-color: #fff;
+                    border-radius: 8px;
+                }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/index0">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+        <a href="#" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </a>
+    </nav><center>
+        
+</center>
+
+<div class="form-container">
+    <script>
+        function generateQuestion() {
+            // Clear the content of the answerDisplay div
+            document.getElementById('answerDisplay').innerHTML = '';
+
+            fetch('/generate_question')
+                .then(response => response.json())
+                .then(data => {
+                    const questionNumber = data.question_number;
+                    const question = data.question;
+    
+                    if (question) {
+                        document.getElementById('questionDisplay').innerText = `Question Number: ${questionNumber}\nQuestion: ${question}`;
+                        document.getElementById('answerInput').value = '';
+                        document.getElementById('questionNumberInput').value = questionNumber;
+                    } else {
+                        console.error('Error: Empty question received.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+        function submitAnswer() {
+            const userAnswer = document.getElementById('answerInput').value;
+            const questionNumber = document.getElementById('questionNumberInput').value;
+    
+            fetch('/store_question_answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `question_number=${encodeURIComponent(questionNumber)}&question=${encodeURIComponent(userAnswer)}`,
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+    
+                // Redirect to the "result.html" page after submitting the answer
+                window.location.href = '/result';
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        function showAnswer() {
+            const questionNumber = document.getElementById('questionNumberInput').value;
+    
+            fetch(`/get_answer/${questionNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    const answer = data.answer;
+    
+                    if (answer) {
+                        document.getElementById('answerDisplay').innerHTML = `<strong>Answer:</strong> ${answer}`;
+                    } else {
+                        console.error('Error: Empty answer received.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+
+    
+    <div class="form-container">
+        <button id="generateQuestionBtn" onclick="generateQuestion()">Generate Question</button>
+        <textarea id="answerInput" placeholder="Enter your answer"></textarea>
+
+        <input type="hidden" id="questionNumberInput" name="question_number" value="">
+        <button onclick="submitAnswer()">Submit Answer</button>
+
+        <!-- Add this button after the "Submit Answer" button -->
+        <button onclick="showAnswer()">Show Answer</button>
+
+        <!-- Add this div to display the answer -->
+        <div id="answerDisplay"></div>
+
+        <div id="questionDisplay"></div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</div>
+</body>
+</html>
