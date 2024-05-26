@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+
+    <!-- Add any additional styles or links to external stylesheets here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <style>
+        body {
+            background-image: url("static/new2.jpg");
+        }
+        .congrats {
+            color: green;
+        }
+
+        .oops {
+            color: red;
+        }
+        p {
+            font-size: 40px;
+            font-weight: bolder;
+            font-style: arial;
+            background-color: aliceblue;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            background-color: aliceblue;
+        }
+        .back-icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="back-button">
+        <i class="fas fa-arrow-left back-icon"></i> Back
+    </a>
+    <center>
+        {% if result == 1 %}
+            <p class="congrats">Congrats! Your answer is correct.</p>
+        {% else %}
+            <p class="oops">Oops! Your answer is wrong. Try again next time.</p>
+        {% endif %}
+    </center>
+</body>
+</html>
