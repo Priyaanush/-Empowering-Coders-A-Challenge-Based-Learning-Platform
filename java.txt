@@ -1,0 +1,235 @@
+1.Reverse a String
+
+public class ReverseString {
+    public static String reverseString(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        String originalString = "Hello, World!";
+        String reversedString = reverseString(originalString);
+        System.out.println(reversedString);
+    }
+}
+
+
+2.Check if a String is a Palindrome:
+
+public class PalindromeCheck {
+    public static boolean isPalindrome(String str) {
+        String reversed = new StringBuilder(str).reverse().toString();
+        return str.equals(reversed);
+    }
+
+    public static void main(String[] args) {
+        String testString = "radar";
+        System.out.println(isPalindrome(testString));
+    }
+}
+
+
+3.Find the Factorial of a Number:
+
+public class Factorial {
+    public static long factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        int num = 5;
+        System.out.println(factorial(num));
+    }
+}
+
+
+4.Check for Prime Numbers:
+
+public class PrimeCheck {
+    public static boolean isPrime(int num) {
+        if (num < 2) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int number = 11;
+        System.out.println(isPrime(number));
+    }
+}
+
+
+
+5.. Implement a Linked List:
+
+
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedList {
+    Node head;
+
+    public void append(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+    }
+
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.append(1);
+        linkedList.append(2);
+    }
+}
+
+
+6.Implement a Stack:
+
+
+
+import java.util.Stack;
+
+public class CustomStack {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        System.out.println(stack.pop());  // Output: 2
+        System.out.println(stack.peek()); // Output: 1
+    }
+}
+
+
+
+7.Determine if Two Strings are Anagrams:
+
+
+import java.util.Arrays;
+
+public class AnagramCheck {
+    public static boolean areAnagrams(String str1, String str2) {
+        char[] charArray1 = str1.toCharArray();
+        char[] charArray2 = str2.toCharArray();
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+        return Arrays.equals(charArray1, charArray2);
+    }
+
+    public static void main(String[] args) {
+        String word1 = "listen";
+        String word2 = "silent";
+        System.out.println(areAnagrams(word1, word2));  // Output: true
+    }
+}
+
+
+8. Rotate a Matrix:
+
+
+public class MatrixRotation {
+    public static void rotateMatrix(int[][] matrix) {
+        int n = matrix.length;
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = i; j < n - i - 1; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - j - 1][i];
+                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];
+                matrix[j][n - i - 1] = temp;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        rotateMatrix(matrix);
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+}
+
+
+
+
+
+9. Implement a Queue using Two Stacks:
+
+import java.util.Stack;
+
+public class QueueWithTwoStacks {
+    Stack<Integer> stack1 = new Stack<>();
+    Stack<Integer> stack2 = new Stack<>();
+
+    public void enqueue(int item) {
+        stack1.push(item);
+    }
+
+    public int dequeue() {
+        if (stack2.isEmpty()) {
+            if (stack1.isEmpty()) {
+                throw new IllegalStateException("Queue is empty");
+            }
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.pop();
+    }
+
+    public static void main(String[] args) {
+        QueueWithTwoStacks queue = new QueueWithTwoStacks();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        System.out.println(queue.dequeue());  // Output: 1
+        System.out.println(queue.dequeue());  // Output: 2
+    }
+}
+
+ 
+10. Find the Missing Number in an Array:
+
+
+public class MissingNumber {
+    public static int findMissingNumber(int[] nums) {
+        int n = nums.length + 1;
+        int expectedSum = n * (n + 1) / 2;
+        int actualSum = 0;
+        for (int num : nums) {
+            actualSum += num;
+        }
+        return expectedSum - actualSum;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 4, 6, 3, 7, 8};
+        System.out.println(findMissingNumber(array));  // Output: 5
+    }
+}

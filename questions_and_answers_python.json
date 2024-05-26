@@ -1,0 +1,100 @@
+[
+  {
+    "question_number": 1,
+    "question": "Reverse a String:",
+    "answer": {
+      "code": "def reverse_string(s):\r\n    return s[::-1]"
+    }
+  },
+  {
+    "question_number": 2,
+    "question": "Check if a String is a Palindrome:",
+    "answer": {
+      "code": "def is_palindrome(s):\r\n    return s == s[::-1]"
+    }
+  },
+  {
+    "question_number": 3,
+    "question": "Find the Factorial of a Number",
+    "answer": {
+      "code": "def factorial(n):\r\n    if n == 0 or n == 1:\r\n        return 1\r\n    else:\r\n        return n * factorial(n-1)"
+    }
+  },
+  {
+    "question_number": 4,
+    "question": "Check for Prime Numbers:",
+    "answer": {
+      "code": "def is_prime(num):\r\n    if num < 2:\r\n        return False\r\n    for i in range(2, int(num**0.5) + 1):\r\n        if num % i == 0:\r\n            return False\r\n    return True"
+    }
+  },
+  {
+    "question_number": 5,
+    "question": "Implement a Linked List:",
+    "answer": {
+      "code": "class Node:\r\n    def __init__(self, data):\r\n        self.data = data\r\n        self.next = None\r\n\r\nclass LinkedList:\r\n    def __init__(self):\r\n        self.head = None\r\n\r\n    def append(self, data):\r\n        new_node = Node(data)\r\n        if not self.head:\r\n            self.head = new_node\r\n        else:\r\n            current = self.head\r\n            while current.next:\r\n                current = current.next\r\n            current.next = new_node"
+    }
+  },
+  {
+    "question_number": 6,
+    "question": "Count Words in a Sentence:",
+    "answer": {
+      "code": "def count_words(sentence):\r\n    words = sentence.split()\r\n    return len(words)"
+    }
+  },
+  {
+    "question_number": 7,
+    "question": "Find the Maximum Subarray Sum",
+    "answer": {
+      "code": "def max_subarray_sum(arr):\r\n    max_sum = current_sum = arr[0]\r\n    for num in arr[1:]:\r\n        current_sum = max(num, current_sum + num)\r\n        max_sum = max(max_sum, current_sum)\r\n    return max_sum"
+    }
+  },
+  {
+    "question_number": 8,
+    "question": "Implement a Stack:",
+    "answer": {
+      "code": "class Stack:\r\n    def __init__(self):\r\n        self.items = []\r\n\r\n    def push(self, item):\r\n        self.items.append(item)\r\n\r\n    def pop(self):\r\n        if not self.is_empty():\r\n            return self.items.pop()\r\n\r\n    def peek(self):\r\n        if not self.is_empty():\r\n            return self.items[-1]\r\n\r\n    def is_empty(self):\r\n        return len(self.items) == 0\r\n"
+    }
+  },
+  {
+    "question_number": 9,
+    "question": "Determine if Two Strings are Anagrams:",
+    "answer": {
+      "code": "def are_anagrams(str1, str2):\r\n    return sorted(str1) == sorted(str2)"
+    }
+  },
+  {
+    "question_number": 10,
+    "question": "Rotate a Matrix",
+    "answer": {
+      "code": "def rotate_matrix(matrix):\r\n    n = len(matrix)\r\n    for i in range(n // 2):\r\n        for j in range(i, n - i - 1):\r\n            temp = matrix[i][j]\r\n            matrix[i][j] = matrix[n - j - 1][i]\r\n            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]\r\n            matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1]\r\n            matrix[j][n - i - 1] = temp"
+    }
+  },
+  {
+    "question_number": 11,
+    "question": "10.Rotate a Matrix:",
+    "answer": {
+      "code": "def rotate_matrix(matrix):\r\n    n = len(matrix)\r\n    for i in range(n // 2):\r\n        for j in range(i, n - i - 1):\r\n            temp = matrix[i][j]\r\n            matrix[i][j] = matrix[n - j - 1][i]\r\n            matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1]\r\n            matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1]\r\n            matrix[j][n - i - 1] = temp\r\n\r\n"
+    }
+  },
+  {
+    "question_number": 12,
+    "question": "add two numbers",
+    "answer": {
+      "code": "a=10\r\nb=10\r\nc=a+b\r\nprint(c)"
+    }
+  },
+  {
+    "question_number": 13,
+    "question": "add 2 numbers",
+    "answer": {
+      "code": "a=2\r\nb=4\r\nc=a+b\r\nprint(\"c\")"
+    }
+  },
+  {
+    "question_number": 14,
+    "question": "Write a program to print even length words in a string",
+    "answer": {
+      "code": "def printWords(s): \r\n     \r\n    # split the string \r\n    s = s.split(' ') \r\n     \r\n    # iterate in words of string \r\n    for word in s: \r\n         \r\n        # if length is even \r\n        if len(word)%2==0: \r\n            print(word) \r\n \r\n \r\n# Driver Code \r\ns = \"i am muskan\"\r\nprintWords(s) "
+    }
+  }
+]

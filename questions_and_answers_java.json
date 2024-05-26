@@ -1,0 +1,65 @@
+[
+  {
+    "question_number": 1,
+    "question": "Reverse a String",
+    "answer": {
+      "code": "public class ReverseString {\r\n    public static String reverseString(String str) {\r\n        return new StringBuilder(str).reverse().toString();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        String originalString = \"Hello, World!\";\r\n        String reversedString = reverseString(originalString);\r\n        System.out.println(reversedString);\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 2,
+    "question": "Check if a String is a Palindrome:",
+    "answer": {
+      "code": "public class PalindromeCheck {\r\n    public static boolean isPalindrome(String str) {\r\n        String reversed = new StringBuilder(str).reverse().toString();\r\n        return str.equals(reversed);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        String testString = \"radar\";\r\n        System.out.println(isPalindrome(testString));\r\n    }\r\n}\r\n"
+    }
+  },
+  {
+    "question_number": 3,
+    "question": "Find the Factorial of a Number:",
+    "answer": {
+      "code": "public class Factorial {\r\n    public static long factorial(int n) {\r\n        if (n == 0 || n == 1) {\r\n            return 1;\r\n        } else {\r\n            return n * factorial(n - 1);\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        int num = 5;\r\n        System.out.println(factorial(num));\r\n    }\r\n}\r\n"
+    }
+  },
+  {
+    "question_number": 4,
+    "question": "Check for Prime Numbers:",
+    "answer": {
+      "code": "public class PrimeCheck {\r\n    public static boolean isPrime(int num) {\r\n        if (num < 2) {\r\n            return false;\r\n        }\r\n        for (int i = 2; i <= Math.sqrt(num); i++) {\r\n            if (num % i == 0) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        int number = 11;\r\n        System.out.println(isPrime(number));\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 5,
+    "question": "implement a Linked List:",
+    "answer": {
+      "code": "class Node {\r\n    int data;\r\n    Node next;\r\n\r\n    public Node(int data) {\r\n        this.data = data;\r\n        this.next = null;\r\n    }\r\n}\r\n\r\npublic class LinkedList {\r\n    Node head;\r\n\r\n    public void append(int data) {\r\n        Node newNode = new Node(data);\r\n        if (head == null) {\r\n            head = newNode;\r\n            return;\r\n        }\r\n        Node current = head;\r\n        while (current.next != null) {\r\n            current = current.next;\r\n        }\r\n        current.next = newNode;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        LinkedList linkedList = new LinkedList();\r\n        linkedList.append(1);\r\n        linkedList.append(2);\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 6,
+    "question": "Implement a Stack:",
+    "answer": {
+      "code": "import java.util.Stack;\r\n\r\npublic class CustomStack {\r\n    public static void main(String[] args) {\r\n        Stack<Integer> stack = new Stack<>();\r\n        stack.push(1);\r\n        stack.push(2);\r\n        System.out.println(stack.pop());  // Output: 2\r\n        System.out.println(stack.peek()); // Output: 1\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 7,
+    "question": "Determine if Two Strings are Anagrams:",
+    "answer": {
+      "code": "import java.util.Arrays;\r\n\r\npublic class AnagramCheck {\r\n    public static boolean areAnagrams(String str1, String str2) {\r\n        char[] charArray1 = str1.toCharArray();\r\n        char[] charArray2 = str2.toCharArray();\r\n        Arrays.sort(charArray1);\r\n        Arrays.sort(charArray2);\r\n        return Arrays.equals(charArray1, charArray2);\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        String word1 = \"listen\";\r\n        String word2 = \"silent\";\r\n        System.out.println(areAnagrams(word1, word2));  // Output: true\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 8,
+    "question": "Rotate a Matrix:",
+    "answer": {
+      "code": "public class MatrixRotation {\r\n    public static void rotateMatrix(int[][] matrix) {\r\n        int n = matrix.length;\r\n        for (int i = 0; i < n / 2; i++) {\r\n            for (int j = i; j < n - i - 1; j++) {\r\n                int temp = matrix[i][j];\r\n                matrix[i][j] = matrix[n - j - 1][i];\r\n                matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];\r\n                matrix[n - i - 1][n - j - 1] = matrix[j][n - i - 1];\r\n                matrix[j][n - i - 1] = temp;\r\n            }\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        int[][] matrix = {\r\n            {1, 2, 3},\r\n            {4, 5, 6},\r\n            {7, 8, 9}\r\n        };\r\n        rotateMatrix(matrix);\r\n        for (int[] row : matrix) {\r\n            System.out.println(Arrays.toString(row));\r\n        }\r\n    }\r\n}"
+    }
+  },
+  {
+    "question_number": 9,
+    "question": "Implement a Queue using Two Stacks:",
+    "answer": {
+      "code": "\r\nimport java.util.Stack;\r\n\r\npublic class QueueWithTwoStacks {\r\n    Stack<Integer> stack1 = new Stack<>();\r\n    Stack<Integer> stack2 = new Stack<>();\r\n\r\n    public void enqueue(int item) {\r\n        stack1.push(item);\r\n    }\r\n\r\n    public int dequeue() {\r\n        if (stack2.isEmpty()) {\r\n            if (stack1.isEmpty()) {\r\n                throw new IllegalStateException(\"Queue is empty\");\r\n            }\r\n            while (!stack1.isEmpty()) {\r\n                stack2.push(stack1.pop());\r\n            }\r\n        }\r\n        return stack2.pop();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        QueueWithTwoStacks queue = new QueueWithTwoStacks();\r\n        queue.enqueue(1);\r\n        queue.enqueue(2);\r\n        System.out.println(queue.dequeue());  // Output: 1\r\n        System.out.println(queue.dequeue());  // Output: 2\r\n    }\r\n}"
+    }
+  }
+]

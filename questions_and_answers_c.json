@@ -1,0 +1,72 @@
+[
+  {
+    "question_number": 1,
+    "question": "Reverse a String:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n#include <string.h>\r\n\r\nvoid reverseString(char str[]) {\r\n    int length = strlen(str);\r\n    for (int i = 0; i < length / 2; i++) {\r\n        char temp = str[i];\r\n        str[i] = str[length - i - 1];\r\n        str[length - i - 1] = temp;\r\n    }\r\n}\r\n\r\nint main() {\r\n    char str[] = \"Hello, World!\";\r\n    reverseString(str);\r\n    printf(\"%s\\n\", str);\r\n    return 0;\r\n}"
+    }
+  },
+  {
+    "question_number": 2,
+    "question": "Swap Two Numbers without using a Temporary Variable:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n\r\nvoid swapNumbers(int *a, int *b) {\r\n    *a = *a + *b;\r\n    *b = *a - *b;\r\n    *a = *a - *b;\r\n}\r\n\r\nint main() {\r\n    int x = 5, y = 10;\r\n    swapNumbers(&x, &y);\r\n    printf(\"After swapping: x = %d, y = %d\\n\", x, y);\r\n    return 0;\r\n}"
+    }
+  },
+  {
+    "question_number": 3,
+    "question": " Find Factorial of a Number:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n\r\nint factorial(int n) {\r\n    if (n == 0 || n == 1) {\r\n        return 1;\r\n    } else {\r\n        return n * factorial(n - 1);\r\n    }\r\n}\r\n\r\nint main() {\r\n    int num = 5;\r\n    printf(\"Factorial of %d is %d\\n\", num, factorial(num));\r\n    return 0;\r\n}\r\n"
+    }
+  },
+  {
+    "question_number": 4,
+    "question": "Check for Palindrome:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n#include <string.h>\r\n\r\nint isPalindrome(char str[]) {\r\n    int length = strlen(str);\r\n    for (int i = 0; i < length / 2; i++) {\r\n        if (str[i] != str[length - i - 1]) {\r\n            return 0;  // Not a palindrome\r\n        }\r\n    }\r\n    return 1;  // Palindrome\r\n}\r\n\r\nint main() {\r\n    char testString[] = \"radar\";\r\n    if (isPalindrome(testString)) {\r\n        printf(\"Palindrome\\n\");\r\n    } else {\r\n        printf(\"Not a palindrome\\n\");\r\n    }\r\n    return 0;\r\n}"
+    }
+  },
+  {
+    "question_number": 5,
+    "question": "implement a Linked List:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n#include <stdlib.h>\r\n\r\nstruct Node {\r\n    int data;\r\n    struct Node* next;\r\n};\r\n\r\nvoid append(struct Node** head, int data) {\r\n    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));\r\n    newNode->data = data;\r\n    newNode->next = NULL;\r\n    \r\n    if (*head == NULL) {\r\n        *head = newNode;\r\n    } else {\r\n        struct Node* current = *head;\r\n        while (current->next != NULL) {\r\n            current = current->next;\r\n        }\r\n        current->next = newNode;\r\n    }\r\n}\r\n\r\nint main() {\r\n    struct Node* linkedList = NULL;\r\n    append(&linkedList, 1);\r\n    append(&linkedList, 2);\r\n    return 0;\r\n}\r\n\r\n"
+    }
+  },
+  {
+    "question_number": 6,
+    "question": "Find the Largest Element in an Array:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n\r\nint findLargestElement(int arr[], int size) {\r\n    int largest = arr[0];\r\n    for (int i = 1; i < size; i++) {\r\n        if (arr[i] > largest) {\r\n            largest = arr[i];\r\n        }\r\n    }\r\n    return largest;\r\n}\r\n\r\nint main() {\r\n    int array[] = {3, 8, 1, 5, 12, 7};\r\n    int size = sizeof(array) / sizeof(array[0]);\r\n    printf(\"Largest element in the array is: %d\\n\", findLargestElement(array, size));\r\n    return 0;\r\n}"
+    }
+  },
+  {
+    "question_number": 7,
+    "question": "Check for Prime Numbers:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n\r\nint isPrime(int num) {\r\n    if (num < 2) {\r\n        return 0;  // Not a prime number\r\n    }\r\n    for (int i = 2; i * i <= num; i++) {\r\n        if (num % i == 0) {\r\n            return 0;  // Not a prime number\r\n        }\r\n    }\r\n    return 1;  // Prime number\r\n}\r\n\r\nint main() {\r\n    int number = 11;\r\n    if (isPrime(number)) {\r\n        printf(\"%d is a prime number\\n\", number);\r\n    } else {\r\n        printf(\"%d is not a prime number\\n\", number);\r\n    }\r\n    return 0;\r\n}\r\n\r\n"
+    }
+  },
+  {
+    "question_number": 8,
+    "question": "Implement a Queue using Arrays:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n#include <stdlib.h>\r\n\r\n#define MAX_SIZE 10\r\n\r\nstruct Queue {\r\n    int items[MAX_SIZE];\r\n    int front, rear;\r\n};\r\n\r\nvoid enqueue(struct Queue* q, int value) {\r\n    if (q->rear == MAX_SIZE - 1) {\r\n        printf(\"Queue is full\\n\");\r\n        return;\r\n    }\r\n    q->items[++(q->rear)] = value;\r\n}\r\n\r\nint dequeue(struct Queue* q) {\r\n    if (q->front > q->rear) {\r\n        printf(\"Queue is empty\\n\");\r\n        return -1;\r\n    }\r\n    return q->items[(q->front)++];\r\n}\r\n\r\nint main() {\r\n    struct Queue myQueue;\r\n    myQueue.front = 0;\r\n    myQueue.rear = -1;\r\n    \r\n    enqueue(&myQueue, 1);\r\n    enqueue(&myQueue, 2);\r\n    \r\n    printf(\"Dequeued: %d\\n\", dequeue(&myQueue));\r\n    printf(\"Dequeued: %d\\n\", dequeue(&myQueue));\r\n    \r\n    return 0;\r\n}\r\n\r\n\r\n"
+    }
+  },
+  {
+    "question_number": 9,
+    "question": "Calculate Fibonacci Series:",
+    "answer": {
+      "code": "#include <stdio.h>\r\n\r\nint fibonacci(int n) {\r\n    if (n <= 1) {\r\n        return n;\r\n    }\r\n    return fibonacci(n - 1) + fibonacci(n - 2);\r\n}\r\n\r\nint main() {\r\n    int n = 5;\r\n    printf(\"Fibonacci Series up to %d terms:\\n\", n);\r\n    for (int i = 0; i < n; i++) {\r\n        printf(\"%d \", fibonacci(i));\r\n    }\r\n    printf(\"\\n\");\r\n    return 0;\r\n}\r\n"
+    }
+  },
+  {
+    "question_number": 10,
+    "question": " Write a program in C to display the first 10 natural numbers",
+    "answer": {
+      "code": "#include <stdio.h> \r\nint main() \r\n{\r\n    int i;\r\n    printf(\"The first 10 natural numbers are:\\n\");\r\n\r\n    for (i = 1; i <= 10; i++) \r\n{\r\n        printf(\"%d \", i);\r\n    }\r\n\r\n    return 0;\r\n}\r\n"
+    }
+  }
+]
