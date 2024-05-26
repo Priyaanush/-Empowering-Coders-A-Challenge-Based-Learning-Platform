@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV File</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("static/new2.jpg");
+            text-align: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            color: #fffcfc;
+            font-size: 60px;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: bolder;
+        }
+
+        .form-container {
+            background-color: #c9c0c0ef;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 30%;
+            margin: 20px auto;
+            border-radius: 20px 100px ;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #333;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        nav i {
+            margin-right: 2px;
+        }
+        
+        .notification.success {
+            background-color: #4caf50;  /* Green */
+        }
+        
+       
+    </style>    
+    <!-- Include Font Awesome CSS (you can get this link from the Font Awesome website) -->
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="/index0">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+        <a href="/admin">
+            <i class="fas fa-poll"></i>
+            Results
+        </a>
+    </nav>
+    <center>
+  
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification success">
+                        <i class="fas fa-check-circle"></i> {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+            
+        </center>
+
+ 
+    <h1>ENTER THE QUESTION </h1>
+   
+
+    <div class="form-container">
+        <form action="/question" method="post" enctype="multipart/form-data">
+            <label>Question</label>
+            <input type="text" name="ques"><br>
+			<label for="language">Language:</label>
+			<select id="language" name="language">
+				<option value="python">Python</option>
+				<option value="java">Java</option>
+				<option value="c">C</option>
+			</select><br>
+            <textarea id="{{ content }}" name="solve" required style="width: 70%; height: 400px;"></textarea>
+            
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+   
+</body>
+</html>
